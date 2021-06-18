@@ -9,7 +9,7 @@
     $hostname = "sql302.epizy.com";
     $dbname = "epiz_28837999_library";
     $username = "epiz_28837999";
-    $password = "FtpN8KFG9YK";
+    $password = "Adr1an03t3cL1n5";
 
 
     try {
