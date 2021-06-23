@@ -15,43 +15,45 @@
         );
     } else {
         // Caso não exista campo em vazio, vamos gerar a requisição
-        $IDEIXO = isset($requestData['IDEIXO']) ? $requestData['IDEIXO'] : '';
+        $ID = isset($requestData['IDCURSO']) ? $requestData['IDCURSO'] : '';
         $operacao = isset($requestData['operacao']) ? $requestData['operacao'] : '';
 
         // Verifica se é para cadastra um nvo registro
         if($operacao == 'insert'){
             // Prepara o comando INSERT para ser executado
             try{
-                $stmt = $pdo->prepare('INSERT INTO EIXO (NOME) VALUES (:nome)');
+                $stmt = $pdo->prepare('INSERT INTO CURSO (NOME, EIXO_IDEIXO) VALUES (:a, :b)');
                 $stmt->execute(array(
-                    ':nome' => utf8_decode($requestData['NOME'])
+                    ':a' => utf8_decode($requestData['NOME']),
+                    ':b' => $requestData['EIXO_IDEIXO']
                 ));
                 $dados = array(
                     "tipo" => 'success',
-                    "mensagem" => 'Eixo tecnológico cadastrado com sucesso.'
+                    "mensagem" => 'Curso cadastrado com sucesso.'
                 );
             } catch(PDOException $e) {
                 $dados = array(
                     "tipo" => 'error',
-                    "mensagem" => 'Não foi possível efetuar o cadastro do eixo.'
+                    "mensagem" => 'Não foi possível efetuar o cadastro do curso.'
                 );
             }
         } else {
             // Se minha variável operação estiver vazia então devo gerar os scripts de update
             try{
-                $stmt = $pdo->prepare('UPDATE EIXO SET NOME = :nome WHERE IDEIXO = :id');
+                $stmt = $pdo->prepare('UPDATE CURSO SET NOME = :a, EIXO_IDEIXO = :b WHERE IDCURSO = :id');
                 $stmt->execute(array(
-                    ':id' => $IDEIXO,
-                    ':nome' => utf8_decode($requestData['NOME'])
+                    ':id' => $ID,
+                    ':a' => utf8_decode($requestData['NOME']),
+                    ':b' => $requestData['EIXO_IDEIXO']
                 ));
                 $dados = array(
                     "tipo" => 'success',
-                    "mensagem" => 'Eixo tecnológico atualizado com sucesso.'
+                    "mensagem" => 'Curso atualizado com sucesso.'
                 );
             } catch (PDOException $e) {
                 $dados = array(
                     "tipo" => 'error',
-                    "mensagem" => 'Não foi possível efetuar o alteração do eixo.'
+                    "mensagem" => 'Não foi possível efetuar o alteração do curso.'
                 );
             }
         }

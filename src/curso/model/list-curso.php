@@ -11,7 +11,7 @@
     $colunas = $requestData['columns'];
 
     //Preparar o comando sql para obter os dados da categoria
-    $sql = "SELECT IDEIXO, NOME FROM EIXO WHERE 1=1 ";
+    $sql = "SELECT IDCURSO, NOME FROM CURSO WHERE 1=1 ";
 
     //Obter o total de registros cadastrados
     $resultado = $pdo->query($sql);
@@ -22,7 +22,7 @@
     if( !empty( $filtro ) ){
         //Montar a expressão lógica que irá compor os filtros
         //Aqui você deverá determinar quais colunas farão parte do filtro
-        $sql .= " AND (IDEIXO LIKE '$filtro%' ";
+        $sql .= " AND (IDCURSO LIKE '$filtro%' ";
         $sql .= " OR NOME LIKE '$filtro%') ";
     }
     

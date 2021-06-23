@@ -1,16 +1,16 @@
 $(document).ready(function() {
-    $('#eixo').DataTable({
+    $('#table-curso').DataTable({
         "processing": true,
         "serverSide": true,
         "ajax": {
-            "url": "src/eixo/model/list-eixo.php",
+            "url": "src/curso/model/list-curso.php",
             "type": "POST"
         },
         "language": {
             "url": "libs/DataTables/pt_br.json"
         },
         "columns": [{
-                "data": 'IDEIXO',
+                "data": 'IDCURSO',
                 "className": 'text-center'
             },
             {
@@ -18,7 +18,7 @@ $(document).ready(function() {
                 "className": 'text-center'
             },
             {
-                "data": 'IDEIXO',
+                "data": 'IDCURSO',
                 "orderable": false,
                 "searchable": false,
                 "className": 'text-center',

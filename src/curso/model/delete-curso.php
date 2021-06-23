@@ -4,10 +4,10 @@
     include("../../conexao/conn.php");
 
     // Coleta do ID que será excluído do nosso banco de dados que está sendo enviado pelo FORM
-    $IDEIXO = $_REQUEST['IDEIXO'];
+    $ID = $_REQUEST['IDCURSO'];
 
     // Criar a nossa querie para interação com o banco de dados
-    $sql = "DELETE FROM EIXO WHERE IDEIXO = $IDEIXO";
+    $sql = "DELETE FROM CURSO WHERE IDCURSO = $ID";
 
     // Executar a nossa querie
     $resultado = $pdo->query($sql);
