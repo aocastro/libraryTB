@@ -1,10 +1,10 @@
 $(document).ready(function() {
 
-    $('#eixo').on('click', 'button.btn-delete', function(e) {
+    $('#table-curso').on('click', 'button.btn-delete', function(e) {
 
         e.preventDefault()
 
-        let IDEIXO = `IDEIXO=${$(this).attr('id')}`
+        let IDCURSO = `IDCURSO=${$(this).attr('id')}`
 
         Swal.fire({
             title: 'Library',
@@ -20,8 +20,8 @@ $(document).ready(function() {
                     type: 'POST',
                     dataType: 'json',
                     assync: true,
-                    data: IDEIXO,
-                    url: 'src/eixo/model/delete-eixo.php',
+                    data: IDCURSO,
+                    url: 'src/curso/model/delete-curso.php',
                     success: function(dados) {
                         Swal.fire({
                             title: 'Library',
@@ -30,7 +30,7 @@ $(document).ready(function() {
                             confirmButtonText: 'OK'
                         })
 
-                        $('#eixo').DataTable().ajax.reload()
+                        $('#table-curso').DataTable().ajax.reload()
                     }
                 })
             }

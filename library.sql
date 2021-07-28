@@ -4,12 +4,20 @@ CREATE TABLE IF NOT EXISTS `TIPO_USUARIO` (
   PRIMARY KEY (`IDTIPO_USUARIO`))
 ENGINE = InnoDB;
 
+
+-- -----------------------------------------------------
+-- Table `2874836_library`.`EIXO`
+-- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `EIXO` (
   `IDEIXO` INT NOT NULL AUTO_INCREMENT,
   `NOME` VARCHAR(100) NOT NULL,
   PRIMARY KEY (`IDEIXO`))
 ENGINE = InnoDB;
 
+
+-- -----------------------------------------------------
+-- Table `2874836_library`.`CURSO`
+-- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `CURSO` (
   `IDCURSO` INT NOT NULL AUTO_INCREMENT,
   `NOME` VARCHAR(100) NOT NULL,
@@ -23,6 +31,10 @@ CREATE TABLE IF NOT EXISTS `CURSO` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
+
+-- -----------------------------------------------------
+-- Table `2874836_library`.`USUARIO`
+-- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `USUARIO` (
   `IDUSUARIO` INT NOT NULL AUTO_INCREMENT,
   `NOME` VARCHAR(150) NOT NULL,
@@ -61,6 +73,10 @@ CREATE TABLE IF NOT EXISTS `TRABALHO` (
   PRIMARY KEY (`IDTRABALHO`))
 ENGINE = InnoDB;
 
+
+-- -----------------------------------------------------
+-- Table `2874836_library`.`AUTOR`
+-- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `2874836_library`.`AUTOR` (
   `USUARIO_IDUSUARIO` INT NOT NULL,
   `TRABALHO_IDTRABALHO` INT NOT NULL,
@@ -79,6 +95,10 @@ CREATE TABLE IF NOT EXISTS `2874836_library`.`AUTOR` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
+
+-- -----------------------------------------------------
+-- Table `2874836_library`.`HISTORICO`
+-- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `HISTORICO` (
   `IDHISTORICO` INT NOT NULL AUTO_INCREMENT,
   `DATA` DATE NOT NULL,
