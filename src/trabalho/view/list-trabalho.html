@@ -1,0 +1,62 @@
+<div class="row mt-5">
+    <div class="col-12">
+        <div class="card shadow mt-5">
+            <div class="card-header">
+                <div class="card-title">
+                    <div class="row">
+                        <div class="col-12 col-md-9">
+                            <h4 class="text-dark">
+                                Gerenciar Trabalhos
+                            </h4>
+                        </div>
+                        <div class="col-12 col-md-3">
+                            <button class="btn btn-block btn-dark btn-new">
+                                <i class="fas fa-plus-circle"></i> Adicionar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-hover" id="table-trabalho">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th scope="col" class="text-center">ID</th>
+                                    <th scope="col" class="text-center">Título</th>
+                                    <th scope="col" class="text-center">AÇÕES</th>
+                                </tr>
+                            </thead>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="modal-trabalho" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="my-modal-title">Title</h5>
+                <button class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>Content</p>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" data-dismiss="modal"><i class="fas fa-times-circle"></i> Fechar</button>
+                <button class="btn btn-success btn-save"><i class="fas fa-save"></i> Salvar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="src/trabalho/controller/new-trabalho.js"></script>
+<!-- <script src="src/trabalho/controller/save-trabalho.js"></script>
+<script src="src/trabalho/controller/list-trabalho.js"></script>
+<script src="src/trabalho/controller/view-trabalho.js"></script>
+<script src="src/trabalho/controller/edit-trabalho.js"></script>
+<script src="src/trabalho/controller/delete-trabalho.js"></script> -->
