@@ -35,11 +35,78 @@
 
             // tenta mover o arquivo para o destino
             if ( @move_uploaded_file ( $arquivo_tmp, $destino ) ) {
-                $retorno = array ('mensagem' => 'Arquivo salvo com sucesso em : ' . $destino);
-                // include '../conexao.php';
-                // $documents = utf8_decode($_POST['nameDocuments']);
-                // $sqlInsert = mysqli_query($conecta, "INSERT INTO lions_documents (nameDocuments, fileDocuments) VALUES ('".$documents."', '".$novoNome."')");
-                // header('Location: ../../sistema/returnSuccess.php');
+                
+                // Scripts de persistência no banco de dados .....
+                // Obter a nossa conexão com o banco de dados
+                include('../../conexao/conn.php');
+
+                // Obter os dados enviados do formulário via $_REQUEST
+                $requestData = $_REQUEST;
+
+                // Verificação de campo obrigatórios do formulário
+                if(empty($requestData['TITULO'])){
+                    // Caso a variável venha vazia eu gero um retorno de erro do mesmo
+                    $dados = array(
+                        "tipo" => 'error',
+                        "mensagem" => 'Existe(m) campo(s) obrigatório(s) não preenchido(s).'
+                    );
+                } else {
+                    // Caso não exista campo em vazio, vamos gerar a requisição
+                    $ID = isset($requestData['IDTRABALHO']) ? $requestData['IDTRABALHO'] : '';
+                    $operacao = isset($requestData['operacao']) ? $requestData['operacao'] : '';
+
+                    // Verifica se é para cadastra um nvo registro
+                    if($operacao == 'insert'){
+                        // Prepara o comando INSERT para ser executado
+                        try{
+                            $stmt = $pdo->prepare('INSERT INTO TRABALHO (TITULO, ANO, NROPAGINAS, RESUMO, ORIENTADOR, COORIENTADOR, ARQUIVO) VALUES (:a, :b, :c, :d, :e, :f, :g)');
+                            $stmt->execute(array(
+                                ':a' => utf8_decode($requestData['TITULO']),
+                                ':b' => $requestData['ANO'],
+                                ':c' => $requestData['NROPAGINAS'],
+                                ':d' => utf8_decode($requestData['RESUMO']),
+                                ':e' => utf8_decode($requestData['ORIENTADOR']),
+                                ':f' => utf8_decode($requestData['COORIENTADOR']),
+                                ':g' => $novoNome
+                            ));
+                            $retorno = array(
+                                "tipo" => 'success',
+                                "mensagem" => 'Trabalho cadastrado com sucesso.'
+                            );
+                        } catch(PDOException $e) {
+                            $retorno = array(
+                                "tipo" => 'error',
+                                "mensagem" => 'Não foi possível efetuar o cadastro do trabalho.'
+                            );
+                        }
+                    } else {
+                        // Se minha variável operação estiver vazia então devo gerar os scripts de update
+                        try{
+                            $stmt = $pdo->prepare('UPDATE TRABALHO SET TITULO = :a, ANO = :b, NROPAGINAS = :c, RESUMO = :d, ORIENTADOR = :e, COORIENTADOR = :f, ARQUIVO = :g WHERE IDTRABALHO = :id');
+                            $stmt->execute(array(
+                                ':id' => $ID,
+                                ':a' => utf8_decode($requestData['TITULO']),
+                                ':b' => $requestData['ANO'],
+                                ':c' => $requestData['NROPAGINAS'],
+                                ':d' => utf8_decode($requestData['RESUMO']),
+                                ':e' => utf8_decode($requestData['ORIENTADOR']),
+                                ':f' => utf8_decode($requestData['COORIENTADOR']),
+                                ':g' => $requestData['ARQUIVO']
+                            ));
+                            $retorno = array(
+                                "tipo" => 'success',
+                                "mensagem" => 'Trabalho atualizado com sucesso.'
+                            );
+                        } catch (PDOException $e) {
+                            $retorno = array(
+                                "tipo" => 'error',
+                                "mensagem" => 'Não foi possível efetuar o alteração do trabalho.'
+                            );
+                        }
+                    }
+                }
+
+                // $retorno = array ('mensagem' => 'Arquivo salvo com sucesso em : ' . $destino);
             }
             else
                 $retorno = array ('mensagem' => 'Erro ao salvar o arquivo. Aparentemente você não tem permissão de escrita.');
