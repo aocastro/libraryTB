@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerenciamento do sistema de biblioteca</title>
+    <link rel="shortcut icon" href="image/brandColor.png" type="image/x-icon">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="libs/fontAwesome/css/all.css">
+    <link rel="stylesheet" href="libs/sweetAlert/dist/sweetalert2.css">
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-4 col-sm-6 col-12">
+                <img src="image/logo.png" alt="Etec Lins" class="img-fluid mt-5">
+                <h4 class="text-danger text-center mt-5 mb-5">
+                    Login do sistema
+                </h4>
+                <form id="login">
+                    <div class="form-group">
+                        <label>E-mail</label>
+                        <input type="email" name="EMAIL" id="EMAIL" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label>Senha</label>
+                        <input type="password" name="SENHA" id="SENHA" class="form-control">
+                    </div>
+                    <div class="form-group row justify-content-end">
+                        <div class="col-md-6 col-sm-12 col-12">
+                            <button class="btn btn-success btn-block btn-login">
+                                <i class="fas fa-sign-in-alt"></i> Entrar
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="js/jquery-3.6.0.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="libs/sweetAlert/dist/sweetalert2.js"></script>
+    <script src="src/usuario/controller/login-usuario.js"></script>
+</body>
+
+</html>
